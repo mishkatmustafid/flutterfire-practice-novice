@@ -1,34 +1,32 @@
-// ignore_for_file: prefer_const_constructors, avoid_print
+// ignore_for_file: prefer_const_constructors
 
 import 'package:flutter/material.dart';
 import 'package:practice01/services/auth.dart';
 
-class SignIn extends StatefulWidget {
+class Register extends StatefulWidget {
   final Function toggleView;
-
-  const SignIn({Key? key, required this.toggleView}) : super(key: key);
+  const Register({Key? key, required this.toggleView}) : super(key: key);
 
   @override
-  _SignInState createState() => _SignInState();
+  _RegisterState createState() => _RegisterState();
 }
 
-class _SignInState extends State<SignIn> {
+class _RegisterState extends State<Register> {
   final AuthService _auth = AuthService();
 
   String email = '', password = '';
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.brown,
       appBar: AppBar(
-        title: Text('Sign In to Brew Crew'),
+        title: Text('Sign Up to Brew Crew'),
         backgroundColor: Colors.brown[400],
         elevation: 0.0,
         actions: <Widget>[
           TextButton.icon(
             icon: Icon(Icons.person),
-            label: Text('Register'),
+            label: Text('Sign In'),
             onPressed: () => widget.toggleView(),
           ),
         ],
@@ -60,7 +58,7 @@ class _SignInState extends State<SignIn> {
                   ),
                 ),
                 child: Text(
-                  'Sign In',
+                  'Register',
                   style: TextStyle(color: Colors.white),
                 ),
                 onPressed: () async {
@@ -77,18 +75,6 @@ class _SignInState extends State<SignIn> {
             ],
           ),
         ),
-        // child: ElevatedButton(
-        //   child: Text('Sign In anon'),
-        //   onPressed: () async {
-        //     dynamic result = await _auth.signInAnon();
-        //     if(result == null) {
-        //       print('error signing in');
-        //     } else {
-        //       print('signed in');
-        //       print(result.uid);
-        //     }
-        //   },
-        // ),
       ),
     );
   }
