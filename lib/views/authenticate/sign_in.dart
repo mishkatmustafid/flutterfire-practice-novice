@@ -3,6 +3,7 @@
 import 'package:flutter/material.dart';
 import 'package:practice01/services/auth.dart';
 import 'package:practice01/shared/constants.dart';
+import 'package:practice01/shared/loading.dart';
 
 class SignIn extends StatefulWidget {
   final Function toggleView;
@@ -16,12 +17,13 @@ class SignIn extends StatefulWidget {
 class _SignInState extends State<SignIn> {
   final AuthService _auth = AuthService();
   final _formKey = GlobalKey<FormState>();
+  bool loading = false;
 
   String email = '', password = '', error = '';
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return loading ? Loading() : Scaffold(
       backgroundColor: Colors.brown,
       appBar: AppBar(
         title: Text('Sign In to Brew Crew'),
@@ -73,11 +75,13 @@ class _SignInState extends State<SignIn> {
                 ),
                 onPressed: () async {
                   if (_formKey.currentState!.validate()) {
+                    setState(() => loading = true);
                     dynamic result =
                         await _auth.signInWithEmailAndPassword(email, password);
                     if (result == null) {
                       setState(() {
                         error = 'Could not sign in with those credentials';
+                        loading = false;
                       });
                     }
                   }
