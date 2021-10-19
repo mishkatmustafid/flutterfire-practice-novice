@@ -1,4 +1,3 @@
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:practice01/models/user.dart';
 import 'package:practice01/services/database.dart';

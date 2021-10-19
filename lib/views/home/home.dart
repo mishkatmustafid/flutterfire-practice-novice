@@ -1,4 +1,3 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:practice01/models/brew.dart';
 import 'package:practice01/services/auth.dart';
@@ -20,7 +19,7 @@ class Home extends StatelessWidget {
       showModalBottomSheet(context: context, builder: (context){
         return Container(
           padding: const EdgeInsets.symmetric(vertical: 20.0, horizontal: 60.0),
-          child: SettingsForm(),
+          child: const SettingsForm(),
         );
       });
     }
@@ -56,7 +55,7 @@ class Home extends StatelessWidget {
               fit: BoxFit.cover,
             ),
           ),
-          child: BrewList()
+          child: const BrewList()
         ),
       ),
     );
